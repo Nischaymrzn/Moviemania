@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Second from "./Screen2";
 
 const Home = () => {
   const [shows, setShows] = useState([]);

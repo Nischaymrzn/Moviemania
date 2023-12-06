@@ -13,7 +13,9 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route path="/" element={<Home />} />
+
       <Route path=":id" element={<Screen2 />} loader={showsDetailsLoader} />
+
       <Route path="/screen3" element={<Screen3 />} />
     </Route>
   )

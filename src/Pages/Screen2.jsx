@@ -4,18 +4,19 @@ import { useLoaderData } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import calender from "../assets/Calender.png";
 import location from "../assets/location.png";
-import { Link } from "react-router-dom";
 import arrow from "../assets/arrow.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { showsAdded } from "../components/showsSlice";
+import { useDispatch } from "react-redux";
 
 const Screen2 = () => {
   const { id } = useParams();
   const show = useLoaderData();
-  console.log(show);
   const navigate = useNavigate();
 
   const [ticketQty, setTicketQty] = useState(1);
   const [ticketPrice, setTicketPrice] = useState(show.ticketPriceNormal);
+  const selectedMovie = show.title;
 
   const ticketsChange = (event) => {
     const ticketType = event.target.value;
@@ -23,6 +24,21 @@ const Screen2 = () => {
       setTicketPrice(show.ticketPriceVip);
     } else {
       setTicketPrice(show.ticketPriceNormal);
+    }
+  };
+
+  const dispatch = useDispatch();
+
+  const postSumbit = () => {
+    if (ticketQty && ticketPrice) {
+      dispatch(
+        showsAdded({
+          id: show.id,
+          ticketQty,
+          ticketPrice,
+          selectedMovie,
+        })
+      );
     }
   };
 
@@ -64,6 +80,7 @@ const Screen2 = () => {
           className="w-[400px]  border-dark-border p-6 flex flex-col bg-background-secondary border rounded-md"
         >
           <p className="text-xl font-semibold">Event Details</p>
+
           <hr className="w-90 h-[1.5px] my-4 mb-5 bg-gray-600 border-0 rounded dark:bg-gray-900" />
 
           <div className="flex items-center gap-2">
@@ -75,9 +92,11 @@ const Screen2 = () => {
               <p className="text-sm font-medium text-text-secondary">
                 Date and Time
               </p>
+
               <p className="font-medium">Wed, Dec 6, 2023 11:30 AM</p>
             </div>
           </div>
+
           <hr className="w-90 h-[1.5px] mt-4 bg-gray-600 border-0 rounded dark:bg-gray-900" />
 
           <div className="flex items-center gap-2">
@@ -90,13 +109,16 @@ const Screen2 = () => {
                 <p className="text-sm font-medium text-text-secondary">
                   Location
                 </p>
+
                 <p>Kathmandu, Nepal</p>
               </div>
+
               <p className="text-red-400 hover:cursor-pointer hover:underline">
                 View on map
               </p>
             </div>
           </div>
+
           <hr className="w-90 h-[1.5px] my-4 bg-gray-600 border-0 rounded dark:bg-gray-900" />
 
           <div>
@@ -111,6 +133,7 @@ const Screen2 = () => {
                 <option value="normal" className="bg-[#1C1C24]">
                   Normal
                 </option>
+
                 <option value="Vip" className="bg-[#1C1C24]">
                   Vip
                 </option>
@@ -135,6 +158,7 @@ const Screen2 = () => {
                 >
                   -
                 </button>
+
                 <input
                   type="text"
                   disabled
@@ -156,21 +180,15 @@ const Screen2 = () => {
             </div>
           </div>
 
-          <button
-            className="w-full py-3 font-semibold rounded-sm bg-brand-primary"
-            type="submit"
-            onClick={() =>
-              navigate("/screen3", {
-                state: {
-                  ticketQty: ticketQty,
-                  ticketPrice: ticketPrice,
-                  selectedMovie: show.title,
-                },
-              })
-            }
-          >
-            Checkout for NRS.{ticketQty * ticketPrice}
-          </button>
+          <Link to="/screen3">
+            <button
+              className="w-full py-3 font-semibold rounded-sm bg-brand-primary"
+              type="submit"
+              onClick={postSumbit}
+            >
+              Checkout for NRS.{ticketQty * ticketPrice}
+            </button>
+          </Link>
         </form>
       </div>
     </div>
