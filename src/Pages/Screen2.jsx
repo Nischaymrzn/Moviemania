@@ -30,6 +30,9 @@ const Screen2 = () => {
   const dispatch = useDispatch();
 
   const postSumbit = () => {
+    localStorage.setItem("ticketQty", JSON.stringify(ticketQty));
+    localStorage.setItem("ticketPrice", JSON.stringify(ticketPrice));
+    localStorage.setItem("selectedMovie", JSON.stringify(selectedMovie));
     if (ticketQty && ticketPrice) {
       dispatch(
         showsAdded({
@@ -65,7 +68,7 @@ const Screen2 = () => {
           <div className="flex flex-col gap-3">
             <p className="text-lg font-semibold">{show.title}</p>
 
-            <div className="flex items-center gap-3 text-sm">
+            <div className="flex items-center gap-3 text-sm text-neutral_light">
               <p>{show.released}</p>
 
               <div className="w-2 h-2 rounded-full bg-text-secondary"></div>
@@ -79,7 +82,9 @@ const Screen2 = () => {
           onSubmit={(e) => handleSubmit(e)}
           className="w-[400px]  border-dark-border p-6 flex flex-col bg-background-secondary border rounded-md"
         >
-          <p className="text-xl font-semibold">Event Details</p>
+          <p className="text-xl font-semibold text-neutral_dark">
+            Event Details
+          </p>
 
           <hr className="w-90 h-[1.5px] my-4 mb-5 bg-gray-600 border-0 rounded dark:bg-gray-900" />
 
@@ -123,7 +128,9 @@ const Screen2 = () => {
 
           <div>
             <div className="flex gap-2">
-              <p className="text-2xl font-semibold ">Select Tickets:</p>
+              <p className="text-2xl font-semibold text-neutral_light">
+                Select Tickets:
+              </p>
               <select
                 name="ticket"
                 id="select"

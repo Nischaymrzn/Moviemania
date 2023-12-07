@@ -31,7 +31,7 @@ const Home = () => {
                   className="object-cover w-full rounded-lg cursor-pointer border-dark-border aspect-[16/19]"
                 />
 
-                <p className="absolute top-0 right-0 px-4 py-2 m-4 font-semibold capitalize rounded-md transparent">
+                <p className="absolute top-0 right-0 px-4 py-2 m-4 font-semibold capitalize rounded-md transparent text-neutral_white">
                   {data.type}
                 </p>
               </div>
@@ -39,7 +39,7 @@ const Home = () => {
               <div className="flex flex-col gap-3 mt-2">
                 <p className="text-base font-semibold">{data.title}</p>
 
-                <div className="flex items-center gap-3 text-sm">
+                <div className="flex items-center gap-3 text-sm text-neutral_light">
                   <p>{data.released}</p>
 
                   <div className="w-2 h-2 rounded-full bg-text-secondary"></div>

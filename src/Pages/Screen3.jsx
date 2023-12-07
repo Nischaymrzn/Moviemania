@@ -45,6 +45,7 @@ export default function Screen3() {
                     type="text"
                     name="fullName"
                     placeholder="eg. Nischay Maharjan "
+                    required
                     className="bg-inherit border rounded w-full h-11 border-[#252D3C] p-4"
                   />
                 </div>

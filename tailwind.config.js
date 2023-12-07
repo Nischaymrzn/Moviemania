@@ -4,6 +4,15 @@ export default {
   theme: {
     extend: {
       colors: {
+        accent_primary2: "#C9CCF2",
+        accent_primary: "#101F35",
+        accent_secondary: "#D9FF97",
+        // Neutral Colors
+        neutral_white: "#F5F7F9",
+        neutral_dark: "#ABADE8",
+        neutral_light: "#CBCFF3",
+        accent_tertiary: "#4790E5",
+
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
