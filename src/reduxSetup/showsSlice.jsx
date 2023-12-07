@@ -24,7 +24,6 @@ const showsSlice = createSlice({
   initialState,
   reducers: {
     showsAdded(state, action) {
-      console.log(action.payload);
       return action.payload;
     },
   },

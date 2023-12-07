@@ -6,24 +6,29 @@ import calender from "../assets/Calender.png";
 import location from "../assets/location.png";
 import arrow from "../assets/arrow.png";
 import { Link, useNavigate } from "react-router-dom";
-import { showsAdded } from "../components/showsSlice";
+import { showsAdded } from "../reduxSetup/showsSlice";
 import { useDispatch } from "react-redux";
 
 const Screen2 = () => {
   const { id } = useParams();
   const show = useLoaderData();
   const navigate = useNavigate();
+  console.log(show);
 
   const [ticketQty, setTicketQty] = useState(1);
   const [ticketPrice, setTicketPrice] = useState(show.ticketPriceNormal);
   const selectedMovie = show.title;
+  const [ticketType, setTicketType] = useState("Normal");
+  const poster = show.poster;
 
   const ticketsChange = (event) => {
     const ticketType = event.target.value;
     if (ticketType == "Vip") {
       setTicketPrice(show.ticketPriceVip);
+      setTicketType("Vip");
     } else {
       setTicketPrice(show.ticketPriceNormal);
+      setTicketType("Normal");
     }
   };
 
@@ -40,6 +45,8 @@ const Screen2 = () => {
           ticketQty,
           ticketPrice,
           selectedMovie,
+          ticketType,
+          poster,
         })
       );
     }
@@ -134,7 +141,7 @@ const Screen2 = () => {
               <select
                 name="ticket"
                 id="select"
-                className="bg-[#1C1C24] border-[#cad1df] border text-xl px-2 rounded-xl"
+                className="bg-[#1C1C24] border-gray-600 border text-xl px-2 rounded-xl"
                 onChange={ticketsChange}
               >
                 <option value="normal" className="bg-[#1C1C24]">
@@ -179,7 +186,7 @@ const Screen2 = () => {
                   onClick={() =>
                     ticketQty <= 9 && setTicketQty((prev) => prev + 1)
                   }
-                  className=" flex items-center justify-center w-8 h-8 p-2 text-2xl text-white border rounded-md disabled:cursor-not-allowed border-dark-border bg-brand-primary"
+                  className=" flex items-center justify-center w-8 h-8 p-2 text-2xl text-white border rounded-md disabled:cursor-not-allowed border-dark-border bg-background-tertiary"
                 >
                   +
                 </button>

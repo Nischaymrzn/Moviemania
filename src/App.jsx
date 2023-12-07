@@ -8,15 +8,19 @@ import Navbar from "./components/Navbar";
 import Home from "./Pages/Home";
 import Screen2, { showsDetailsLoader } from "./Pages/Screen2";
 import Screen3 from "./Pages/Screen3";
+import Invoice from "./Pages/invoice";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Navbar />}>
-      <Route path="/" element={<Home />} />
+    <Route>
+      <Route path="/" element={<Navbar />}>
+        <Route path="/" element={<Home />} />
 
-      <Route path=":id" element={<Screen2 />} loader={showsDetailsLoader} />
+        <Route path=":id" element={<Screen2 />} loader={showsDetailsLoader} />
 
-      <Route path="/screen3" element={<Screen3 />} />
+        <Route path="/screen3" element={<Screen3 />} />
+      </Route>
+      <Route path="/invoice" element={<Invoice />} />
     </Route>
   )
 );

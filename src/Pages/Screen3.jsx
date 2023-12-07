@@ -3,10 +3,12 @@ import arrow from "../assets/arrow.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { invoiceDetailsAdded } from "../reduxSetup/invoiceDetails";
 
 export default function Screen3() {
   const shows = useSelector((state) => state.shows);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [ticketQty, setTicketQty] = useState(0);
   const [ticketPrice, setTicketPrice] = useState(0);
@@ -20,7 +22,45 @@ export default function Screen3() {
     setTicketPrice(price);
     setSelectedMovie(Movie);
   }, []);
+  function onSubmit(event) {
+    event.preventDefault();
+    const values = {
+      fullName: event.target.fullName.value,
+      email: event.target.email.value,
+      address: event.target.address.value,
+      country: event.target.country.value,
+      state: event.target.state.value,
+      city: event.target.city.value,
+      zipCode: event.target.code.value,
+    };
+    console.log(values);
+    const tickets = [];
+    const ticketDetails = {
+      ticketQty,
+      ticketType: shows.ticketType,
+      unitPrice: ticketPrice,
+      movie: selectedMovie,
+      poster: shows.poster,
+      total:
+        Number(ticketPrice) * ticketQty +
+        (Number(ticketPrice) * ticketQty * 13) / 100,
+    };
+    if (ticketQty > 1) {
+      for (let i = 0; i < ticketQty; i++) {
+        tickets.push({ ...ticketDetails, ticketQty: 1 });
+      }
+    }
+    const data = {
+      movie: { ...values, ...ticketDetails },
+      tickets: ticketQty == 1 ? [ticketDetails] : tickets,
+    };
+    console.log(data);
+    //dispatch to redux
+    dispatch(invoiceDetailsAdded(data));
 
+    localStorage.clear();
+    navigate("/invoice");
+  }
   return (
     <div>
       <button onClick={() => navigate(-1)}>
@@ -33,7 +73,7 @@ export default function Screen3() {
 
           <hr className="w-[90%] h-[1.5px] my-3 mb-4 bg-gray-600 border-0 rounded dark:bg-gray-900" />
         </div>
-        <form action="">
+        <form onSubmit={(e) => onSubmit(e)}>
           <div className="w-[90%] h-[500px] flex gap-[30px]">
             <div className="bg-background-secondary w-[65%] ">
               <div className="flex flex-col p-[21px] gap-[30px]">
