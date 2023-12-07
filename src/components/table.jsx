@@ -48,7 +48,7 @@ const table = ({ movieDetails }) => {
 
       <tfoot className="w-full text-black bg-white">
         <tr>
-          <td className="text-xl text-right px-4" colSpan={7}>
+          <td className="text-xl font-semibold text-right px-4" colSpan={7}>
             Invoice Total: NRS. {movieDetails.total}
           </td>
         </tr>
