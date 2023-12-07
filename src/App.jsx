@@ -11,7 +11,7 @@ import Screen3 from "./Pages/Screen3";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route>
+    <Route path="/" element={<Navbar />}>
       <Route path="/" element={<Home />} />
 
       <Route path=":id" element={<Screen2 />} loader={showsDetailsLoader} />
@@ -23,7 +23,6 @@ const router = createBrowserRouter(
 function App() {
   return (
     <div>
-      <Navbar />
       <RouterProvider router={router} />
     </div>
   );

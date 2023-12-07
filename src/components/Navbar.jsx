@@ -1,7 +1,7 @@
 import React from "react";
-import Home from "../Pages/Home";
 import image from "../assets/Cinema.png";
-import { NavLink } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
+
 const Navbar = () => {
   return (
     <div>
@@ -9,7 +9,11 @@ const Navbar = () => {
         <div className="flex items-center gap-24">
           <div className="flex gap-4">
             <img src={image} alt="error" className="w-7" />
-            <h1 className="text-2xl font-semibold">MovieMania</h1>
+            <Link to="/">
+              <h1 className="text-2xl font-semibold cursor-pointer">
+                MovieMania
+              </h1>
+            </Link>
           </div>
 
           <ul className="flex gap-7 font-medium">
@@ -28,6 +32,7 @@ const Navbar = () => {
           </button>
         </div>
       </nav>
+      <Outlet />
     </div>
   );
 };

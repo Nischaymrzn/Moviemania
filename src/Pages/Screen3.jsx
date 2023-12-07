@@ -8,8 +8,8 @@ import { useSelector } from "react-redux";
 export default function Screen3() {
   const shows = useSelector((state) => state.shows);
   const navigate = useNavigate();
-  const [ticketQty, setTicketQty] = useState(null);
-  const [ticketPrice, setTicketPrice] = useState(null);
+  const [ticketQty, setTicketQty] = useState(0);
+  const [ticketPrice, setTicketPrice] = useState(0);
   const [selectedMovie, setSelectedMovie] = useState("");
 
   useEffect(() => {

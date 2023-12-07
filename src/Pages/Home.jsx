@@ -13,7 +13,6 @@ const Home = () => {
       const data = await response.json();
 
       setShows(data);
-      console.log(shows);
       return data;
     };
     getMovie();

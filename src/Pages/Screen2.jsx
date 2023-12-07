@@ -127,7 +127,7 @@ const Screen2 = () => {
               <select
                 name="ticket"
                 id="select"
-                className="bg-[#1C1C24] border-[#252D3C] border text-xl px-2 rounded-xl"
+                className="bg-[#1C1C24] border-[#cad1df] border text-xl px-2 rounded-xl"
                 onChange={ticketsChange}
               >
                 <option value="normal" className="bg-[#1C1C24]">
