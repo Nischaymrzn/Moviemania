@@ -8,7 +8,7 @@ import Navbar from "./components/Navbar";
 import Home from "./Pages/Home";
 import Screen2, { showsDetailsLoader } from "./Pages/Screen2";
 import Screen3 from "./Pages/Screen3";
-import Invoice from "./Pages/Invoice";
+import Invoice from "./Pages/invoice";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
