@@ -58,7 +58,6 @@ export default function Screen3() {
     //dispatch to redux
     dispatch(invoiceDetailsAdded(data));
 
-    localStorage.clear();
     navigate("/invoice");
   }
   return (

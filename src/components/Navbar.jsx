@@ -1,5 +1,4 @@
 import React from "react";
-import image from "../assets/Cinema.png";
 import { Link, Outlet } from "react-router-dom";
 
 const Navbar = () => {
@@ -8,9 +7,8 @@ const Navbar = () => {
       <nav className="flex items-center justify-between w-full px-24 py-5 text-white bg-brand-primary">
         <div className="flex items-center gap-24">
           <div className="flex gap-4">
-            <img src={image} alt="error" className="w-7" />
             <Link to="/">
-              <h1 className="text-2xl font-bold cursor-pointer text-accent_secondary">
+              <h1 className="text-2xl font-extrabold cursor-pointer text-accent_secondary">
                 MovieMania
               </h1>
             </Link>
@@ -18,8 +16,11 @@ const Navbar = () => {
 
           <ul className="flex gap-7 font-semibold ">
             <li className="cursor-pointer ">Home</li>
+
             <li className="cursor-pointer">Concerts</li>
+
             <li className="cursor-pointer">Movies</li>
+
             <li className="cursor-pointer">Theater Events</li>
           </ul>
         </div>

@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import { usePDF } from "react-to-pdf";
 import InvoiceTable from "../components/table";
 import { useSelector } from "react-redux";
+import ticketImage from "../assets/ticket.png";
 
 const Invoice = () => {
   const { toPDF, targetRef } = usePDF({ filename: "Ticket.pdf" });
@@ -78,6 +79,11 @@ const Invoice = () => {
                           </p>
 
                           <div className="flex items-center gap-2">
+                            <img
+                              src={ticketImage}
+                              alt="error"
+                              className="w-7"
+                            />
                             <p className="font-semibold text-text-primary">
                               x1
                             </p>

@@ -5,22 +5,32 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   const [shows, setShows] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const getMovie = async () => {
-      const response = await fetch(
-        "https://ticket-server-31jc.onrender.com/api/movies"
-      );
-      const data = await response.json();
+      try {
+        setLoading(true);
+        const response = await fetch(
+          "https://nischay-backend-movies.onrender.com/api/movies"
+        );
+        const data = await response.json();
 
-      setShows(data);
-      return data;
+        setShows(data);
+        return data;
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
     };
     getMovie();
   }, []);
 
   return (
-    <div className="grid items-center justify-center w-full grid-cols-4 p-24 text-white gap-14">
-      {shows &&
+    <div className="grid items-center justify-center w-full grid-cols-4 p-24 pt-16 text-white gap-14">
+      {loading && <p>Loading...</p>}
+      {!loading &&
+        shows &&
         shows.map((data) => (
           <div key={data.id} className="flex flex-col gap-6">
             <Link to={`/${data._id}`}>

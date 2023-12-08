@@ -13,7 +13,6 @@ const Screen2 = () => {
   const { id } = useParams();
   const show = useLoaderData();
   const navigate = useNavigate();
-  console.log(show);
 
   const [ticketQty, setTicketQty] = useState(1);
   const [ticketPrice, setTicketPrice] = useState(show.ticketPriceNormal);
@@ -38,6 +37,9 @@ const Screen2 = () => {
     localStorage.setItem("ticketQty", JSON.stringify(ticketQty));
     localStorage.setItem("ticketPrice", JSON.stringify(ticketPrice));
     localStorage.setItem("selectedMovie", JSON.stringify(selectedMovie));
+    localStorage.setItem("ticketType", JSON.stringify(ticketType));
+    localStorage.setItem("poster", JSON.stringify(poster));
+
     if (ticketQty && ticketPrice) {
       dispatch(
         showsAdded({
@@ -216,7 +218,7 @@ export default Screen2;
 export const showsDetailsLoader = async ({ params }) => {
   const { id } = params;
   const response = await fetch(
-    "https://ticket-server-31jc.onrender.com/api/movies/" + id
+    "https://nischay-backend-movies.onrender.com/api/movies/" + id
   );
   const data = await response.json();
   return data;
